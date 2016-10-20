@@ -7,11 +7,6 @@ steps:
         dockerfile: Dockerfile
         image-name: advance512demo/demochat
         tag: codefresh
-    push-step:
-        description: Pushing image to Docker hub.
-        type: push
-        candidate: ${{build-step}}
-        tag: ${{CF_BRANCH}}        
     stuck-composition-step:
       description: A composition step that will get "stuck".
       type: composition
@@ -30,11 +25,11 @@ steps:
         main:
           image: nhoag/curl
           command: bash -c "sleep 2000 && curl http://app:5000/" | echo 'works'
-
-
-
-
-
+    push-step:
+        description: Pushing image to Docker hub.
+        type: push
+        candidate: ${{build-step}}
+        tag: ${{CF_BRANCH}}        
 
 
 
