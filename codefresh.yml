@@ -22,7 +22,13 @@ steps:
     when:
       - name: "Branch is test_me"
         condition: "'${{CF_BRANCH}}' == 'test_me'"
-
+      - name: "Branch is test_him"
+        condition: "'${{CF_BRANCH}}' == 'test_him'"
+      - name: "Branch is test_her"
+        condition: "'${{CF_BRANCH}}' == 'test_her'"
+      - name: "2 * 3 is 6"
+        condition: "2 * 3 == 6"
+       
   unit-test-via-npm:
     description: Running unit test via npm.
     image: ${{build-step}}
@@ -33,7 +39,7 @@ steps:
     when:
       - name: "Verify CONDITION (ignore case) is in branch name"
         condition: "match('${{CF_BRANCH}}', 'CONDITION', true)"
-      
+      - condition: "5 == 3 + 2"
       
   composition-step:
     description: Attempting to run as part of composition.
