@@ -8,7 +8,7 @@ steps:
     image-name: advance512demo/demochat
     tag: codefresh
     when:
-      condition: "'${{CF_BRANCH}}' == 'conditional_step'"
+      - condition: "'${{CF_BRANCH}}' == 'conditional_step'"
 
   unit-test-via-gulp:
     description: Running unit test via gulp.
@@ -20,7 +20,8 @@ steps:
       - gulp test
       - echo $(date)
     when:
-      condition: "'${{CF_BRANCH}}' == 'test_me'"
+      - name: "Branch is test_me"
+        condition: "'${{CF_BRANCH}}' == 'test_me'"
 
   unit-test-via-npm:
     description: Running unit test via npm.
@@ -30,7 +31,8 @@ steps:
       - npm test
       - echo $(date)
     when:
-      condition: "match('${{CF_BRANCH}}', 'CONDITION', true)"
+      - name: "Verify CONDITION (ignore case) is in branch name"
+        condition: "match('${{CF_BRANCH}}', 'CONDITION', true)"
       
       
   composition-step:
@@ -52,7 +54,8 @@ steps:
         image: nhoag/curl
         command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
     when:
-      condition: "match('${{CF_BRANCH}}', 'CONDITION', false)"
+      - name: "Verify CONDITION is in branch name"
+        condition: "match('${{CF_BRANCH}}', 'CONDITION', false)"
 
   push-step:
       description: Pushing image to Docker hub.
@@ -60,5 +63,6 @@ steps:
       candidate: ${{build-step}}
       tag: ${{CF_BRANCH}}        
       when:
-        condition: "'${{CF_BRANCH}}' == 'master'"
+        - name: ""
+          condition: "'${{CF_BRANCH}}' == 'master'"
 
