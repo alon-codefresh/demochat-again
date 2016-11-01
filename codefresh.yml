@@ -7,8 +7,10 @@ steps:
         dockerfile: Dockerfile
         image-name: advance512demo/demochat
         tag: codefresh
-        
-    unit-test-via-gulp:
+        when:
+          condition: "'${{CF_BRANCH}}' == 'conditional_step'"
+
+   unit-test-via-gulp:
       description: Running unit test via gulp.
       image: monostream/nodejs-gulp-bower:latest
       fail-fast: false
@@ -18,7 +20,7 @@ steps:
         - gulp test
         - echo $(date)
       when:
-        condition: "'${{CF_BRANCH}}' == 'conditional_step'"
+        condition: "'${{CF_BRANCH}}' == 'test_me'"
 
     unit-test-via-npm:
       description: Running unit test via npm.
@@ -49,7 +51,9 @@ steps:
         main:
           image: nhoag/curl
           command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
-
+      when:
+        condition: "match('${{CF_BRANCH}}', 'CONDITION', false)"
+ 
     push-step:
         description: Pushing image to Docker hub.
         type: push
