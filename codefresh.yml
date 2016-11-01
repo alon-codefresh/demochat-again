@@ -17,9 +17,9 @@ steps:
         - npm install
         - gulp test
         - echo $(date)
-    when:
-      condition:
-        "'${{CF_BRANCH}}' == 'conditional_step'"
+      when:
+        condition:
+          "'${{CF_BRANCH}}' == 'conditional_step'"
 
     unit-test-via-npm:
       description: Running unit test via npm.
@@ -28,9 +28,9 @@ steps:
       commands:
         - npm test
         - echo $(date)
-    when:
-      condition:
-        "match('${{CF_BRANCH}}', 'CONDITION', true)"
+      when:
+        condition:
+          "match('${{CF_BRANCH}}', 'CONDITION', true)"
         
     composition-step:
       description: Attempting to run as part of composition.
@@ -56,7 +56,7 @@ steps:
         type: push
         candidate: ${{build-step}}
         tag: ${{CF_BRANCH}}        
-    when:
-      condition:
-        "'${{CF_BRANCH}}' == 'master'"
+        when:
+          condition:
+            "'${{CF_BRANCH}}' == 'master'"
 
