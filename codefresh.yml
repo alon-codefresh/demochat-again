@@ -8,7 +8,7 @@ steps:
     image-name: advance512demo/demochat
     tag: codefresh
     when:
-      - condition: "Member('initial-clone', 'commitMessage') == 'hi'"
+      - condition: "Member(Variable('initial-clone'), 'commitMessage') == 'hi'"
       - condition: "Variable('initial-clone').commitMessage == 'hi'"
       - condition: "'${{CF_BRANCH}}' == 'conditional_step'"
       - name: "Bad syntax"
