@@ -8,13 +8,12 @@ steps:
     image-name: advance512demo/demochat
     tag: codefresh
     when:
+      - condition: "Variable('initial-clone').commitMessage == 'hi'"
       - condition: "'${{CF_BRANCH}}' == 'conditional_step'"
       - name: "Bad syntax"
         condition: "2 * 3 <> 55"
       - condition: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
-      - condition: "Variable('initial-clone').commitMessage == 'hi'"
   
-
   another-clone-step:
     type: git-clone
     description: Another clone step
