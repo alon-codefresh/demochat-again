@@ -12,6 +12,11 @@ steps:
       - name: "Bad syntax"
         condition: "2 * 3 <> 55"
 
+  another-clone-step:
+    type: git-clone
+    description: Another clone step
+    repo: github.com/codefresh-io/tevale
+
   unit-test-via-gulp:
     description: Running unit test via gulp.
     image: monostream/nodejs-gulp-bower:latest
