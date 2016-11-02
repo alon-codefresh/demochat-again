@@ -11,6 +11,9 @@ steps:
       - condition: "'${{CF_BRANCH}}' == 'conditional_step'"
       - name: "Bad syntax"
         condition: "2 * 3 <> 55"
+      - condition: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
+      - condition: "Variable('initial-clone').commitMessage == 'hi'"
+  
 
   another-clone-step:
     type: git-clone
@@ -47,8 +50,6 @@ steps:
       - name: "Verify CONDITION (ignore case) is in branch name"
         condition: "match('${{CF_BRANCH}}', 'CONDITION', true)"
       - condition: "5 == 3 + 2"
-      - condition: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
-      - condition: "Variable('initial-clone').commitMessage == 'hi'"
       
   composition-step:
     description: Attempting to run as part of composition.
