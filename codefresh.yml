@@ -15,7 +15,7 @@ steps:
   another-clone-step:
     type: git-clone
     description: Another clone step
-    repo: codefresh-io/tevale
+    repo: github.com/containers101/demochat
 
   unit-test-via-gulp:
     description: Running unit test via gulp.
