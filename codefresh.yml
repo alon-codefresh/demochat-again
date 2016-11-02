@@ -15,7 +15,7 @@ steps:
   another-clone-step:
     type: git-clone
     description: Another clone step
-    repo: github.com/codefresh-io/tevale
+    repo: codefresh-io/tevale
 
   unit-test-via-gulp:
     description: Running unit test via gulp.
