@@ -9,6 +9,8 @@ steps:
     tag: codefresh
     when:
       - condition: "'${{CF_BRANCH}}' == 'conditional_step'"
+      - name: "Bad syntax"
+        condition: "2 * 3 <> 55"
 
   unit-test-via-gulp:
     description: Running unit test via gulp.
