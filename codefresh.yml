@@ -7,6 +7,12 @@ steps:
     dockerfile: Dockerfile
     image-name: advance512demo/demochat
     tag: codefresh
+  
+  another-step:
+    description: Another step.
+    image: ${{build-step}}
+    commands:
+      - echo $(date)
     when:
       condition:
         all:
@@ -15,16 +21,12 @@ steps:
           branchIsConditionalStep: "'${{CF_BRANCH}}' == 'conditional_step'"
           badSyntax: "2 * 3 <> 55"
           commitMessageIsHi: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
-  
-  another-clone-step:
-    type: git-clone
-    description: Another clone step
-    repo: github.com/gernest/utron
-
-  yet-another-clone-step:
-    type: git-clone
-    description: Yet another clone step
-    repo: github.com/ushahidi/SMSSync
+    
+  yet-another-freestyle-step:
+    description: Yet another freestyle step
+    image: ${{build-step}}
+    commands:
+      - echo $(date)
     when:
       condition:
         any:
@@ -33,28 +35,31 @@ steps:
           branchIsTestHer: "'${{CF_BRANCH}}' == 'test_her'"
           twoByThree: "2 * 3 == 6"
        
-  incredibly-another-clone-step:
-    type: git-clone
-    description: Incredibly another clone step
-    repo: github.com/nyaruka/smartmin
+  incredibly-another-freestyle-step:
+    description: Incredibly another freestyle step
+    image: ${{build-step}}
+    commands:
+      - echo $(date)
     when:
       condition:
         any:
           conditionInBranchName: "match('${{CF_BRANCH}}', 'CONDITION', true)"
           someMath: "5 == 3 + 2"
       
-  on-no-another-clone-step:
-    type: git-clone
-    description: Oh no, another clone step
-    repo: github.com/universalcore/elastic-git
+  on-no-another-freestyle-step:
+    description: Oh no, another freestyle step
+    image: ${{build-step}}
+    commands:
+      - echo $(date)
     when:
       branch:
         ignore: [ master, other]
        
-  last-clone-step:
-    type: git-clone
-    description: Last clone step
-    repo: github.com/frontlinesms/frontlinesms2
+  last-freestyle-step:
+    description: Last freestyle step
+    image: ${{build-step}}
+    commands:
+      - echo $(date)
     when:
         branch:
           only: [ conditional_step]
