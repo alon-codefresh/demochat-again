@@ -55,7 +55,7 @@ steps:
       - echo $(date)
     when:
       branch:
-        ignore: [ master, other, /CF.*/, /^startwith/ /endswith$/ ]
+        ignore: [ master, other, "", /CF.*/, /^startwith/ /endswith$/, /badregexp////, /strange-branch, ohno/, somebranch/whichlooks/likethis ]
        
   last-freestyle-step:
     description: Last freestyle step
@@ -64,5 +64,5 @@ steps:
       - echo $(date)
     when:
         branch:
-          only: [ conditional_step, /CF.*/ ]
+          only: [ conditional_step, /CF.*/, /bad/i ]
 
