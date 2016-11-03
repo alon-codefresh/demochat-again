@@ -36,7 +36,7 @@ steps:
           branchIsTestHer: "'${{CF_BRANCH}}' == 'test_her'"
           branchIsTestMe2: "Variable('initial-clone').branch == 'test_me'"
           branchIsTestHim2: "Variable('initial-clone').branch == 'test_him'"
-          branchIsTestHer: "Variable('initial-clone').branch == 'test_her'"
+          branchIsTestHer2: "Variable('initial-clone').branch == 'test_her'"
           twoByThree: "2 * 3 == 6"
        
   incredibly-another-freestyle-step:
