@@ -44,8 +44,8 @@ steps:
     when:
       condition:
         any:
-          conditionInBranchName: "match('${{CF_BRANCH}}', 'CONDITION', true)"
-          conditionInBranchName: "match('${{CF_BRANCH}}', 'CONDITION', false)"
+          conditionInBranchNameCaseIgnored: "match('${{CF_BRANCH}}', 'CONDITION', true)"
+          conditionInBranchNameCaseSensitive: "match('${{CF_BRANCH}}', 'CONDITION', false)"
           someMath: "5 == 3 + 2"
       
   on-no-another-freestyle-step:
