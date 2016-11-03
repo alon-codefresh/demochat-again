@@ -19,17 +19,12 @@ steps:
   another-clone-step:
     type: git-clone
     description: Another clone step
-    repo: github.com/containers101/demochat
+    repo: github.com/gernest/utron
 
-  unit-test-via-gulp:
-    description: Running unit test via gulp.
-    image: monostream/nodejs-gulp-bower:latest
-    fail-fast: false
-    working-directory : ${{initial-clone}}
-    commands:
-      - npm install
-      - gulp test
-      - echo $(date)
+  yet-another-clone-step:
+    type: git-clone
+    description: Yet another clone step
+    repo: github.com/ushahidi/SMSSync
     when:
       condition:
         any:
@@ -38,47 +33,29 @@ steps:
           branchIsTestHer: "'${{CF_BRANCH}}' == 'test_her'"
           twoByThree: "2 * 3 == 6"
        
-  unit-test-via-npm:
-    description: Running unit test via npm.
-    image: ${{build-step}}
-    fail-fast: false
-    commands:
-      - npm test
-      - echo $(date)
+  incredibly-another-clone-step:
+    type: git-clone
+    description: Incredibly another clone step
+    repo: github.com/nyaruka/smartmin
     when:
       condition:
         any:
           conditionInBranchName: "match('${{CF_BRANCH}}', 'CONDITION', true)"
           someMath: "5 == 3 + 2"
       
-  composition-step:
-    description: Attempting to run as part of composition.
-    type: composition
-    composition: 
-      version: '2'
-      services:
-        app:
-          image: 'advance512demo/demochat:master'
-          ports:
-            - 5000
-          depends_on:
-            - mongo
-        mongo:
-          image: mongo
-    composition-candidates:
-      main:
-        image: nhoag/curl
-        command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
+  on-no-another-clone-step:
+    type: git-clone
+    description: Oh no, another clone step
+    repo: github.com/universalcore/elastic-git
     when:
       branch:
         ignore: [ master, other]
        
-  push-step:
-      description: Pushing image to Docker hub.
-      type: push
-      candidate: ${{build-step}}
-      tag: ${{CF_BRANCH}}        
-      when:
+  last-clone-step:
+    type: git-clone
+    description: Last clone step
+    repo: github.com/frontlinesms/frontlinesms2
+    when:
         branch:
           only: [ conditional_step]
 
