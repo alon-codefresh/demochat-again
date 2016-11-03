@@ -8,12 +8,13 @@ steps:
     image-name: advance512demo/demochat
     tag: codefresh
     when:
-      - condition: "Member(Variable('initial-clone'), 'commitMessage') == 'hi'"
-      - condition: "Variable('initial-clone').commitMessage == 'hi'"
-      - condition: "'${{CF_BRANCH}}' == 'conditional_step'"
-      - name: "Bad syntax"
-        condition: "2 * 3 <> 55"
-      - condition: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
+      condition:
+        all:
+          commitMessageContainsHi: "Member(Variable('initial-clone'), 'commitMessage') == 'hi'"
+          commitMessageContainsHi2: "Variable('initial-clone').commitMessage == 'hi'"
+          branchIsConditionalStep: "'${{CF_BRANCH}}' == 'conditional_step'"
+          badSyntax: "2 * 3 <> 55"
+          commitMessageIsHi: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
   
   another-clone-step:
     type: git-clone
@@ -30,14 +31,12 @@ steps:
       - gulp test
       - echo $(date)
     when:
-      - name: "Branch is test_me"
-        condition: "'${{CF_BRANCH}}' == 'test_me'"
-      - name: "Branch is test_him"
-        condition: "'${{CF_BRANCH}}' == 'test_him'"
-      - name: "Branch is test_her"
-        condition: "'${{CF_BRANCH}}' == 'test_her'"
-      - name: "2 * 3 is 6"
-        condition: "2 * 3 == 6"
+      condition:
+        any:
+          branchIsTestMe: "'${{CF_BRANCH}}' == 'test_me'"
+          branchIsTestHim: "'${{CF_BRANCH}}' == 'test_him'"
+          branchIsTestHer: "'${{CF_BRANCH}}' == 'test_her'"
+          twoByThree: "2 * 3 == 6"
        
   unit-test-via-npm:
     description: Running unit test via npm.
@@ -47,9 +46,10 @@ steps:
       - npm test
       - echo $(date)
     when:
-      - name: "Verify CONDITION (ignore case) is in branch name"
-        condition: "match('${{CF_BRANCH}}', 'CONDITION', true)"
-      - condition: "5 == 3 + 2"
+      condition:
+        any:
+          conditionInBranchName: "match('${{CF_BRANCH}}', 'CONDITION', true)"
+          someMath: "5 == 3 + 2"
       
   composition-step:
     description: Attempting to run as part of composition.
@@ -70,15 +70,15 @@ steps:
         image: nhoag/curl
         command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
     when:
-      - name: "Verify CONDITION is in branch name"
-        condition: "match('${{CF_BRANCH}}', 'CONDITION', false)"
-
+      branch:
+        ignore: [ master, other]
+       
   push-step:
       description: Pushing image to Docker hub.
       type: push
       candidate: ${{build-step}}
       tag: ${{CF_BRANCH}}        
       when:
-        - name: ""
-          condition: "'${{CF_BRANCH}}' == 'master'"
+        branch:
+          only: [ conditional_step]
 
