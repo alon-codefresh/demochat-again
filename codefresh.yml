@@ -19,7 +19,7 @@ steps:
           commitMessageNotContainSkip: "includes(Variable('initial-clone').commitMessage, '[skip ci]') == false"
           commitMessageNotContainSkip2: "includes(Variable('initial-clone').commitMessage, '[ci skip]') == false"
           branchIsConditionalStep: "Variable('initial-clone').branch == 'conditional_step'"
-          branchIsConditionalStep2: "${{CF_BRANCH}} == 'conditional_step'"
+          branchIsConditionalStep2: "'${{CF_BRANCH}}' == 'conditional_step'"
           badSyntax: "2 * 3 <> 55"
           commitMessageIsHi: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
     
