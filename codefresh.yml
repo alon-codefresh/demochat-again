@@ -18,7 +18,7 @@ steps:
         all:
           commitMessageNotContainSkip: "includes(Variable('initial-clone').commitMessage, '[skip ci]') == false"
           commitMessageNotContainSkip2: "includes(Variable('initial-clone').commitMessage, '[ci skip]') == false"
-          branchIsConditionalStep: "initial-clone.branch == 'conditional_step'"
+          branchIsConditionalStep: "Variable('initial-clone').branch == 'conditional_step'"
           branchIsConditionalStep2: "${{CF_BRANCH}} == 'conditional_step'"
           badSyntax: "2 * 3 <> 55"
           commitMessageIsHi: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
@@ -34,6 +34,9 @@ steps:
           branchIsTestMe: "'${{CF_BRANCH}}' == 'test_me'"
           branchIsTestHim: "'${{CF_BRANCH}}' == 'test_him'"
           branchIsTestHer: "'${{CF_BRANCH}}' == 'test_her'"
+          branchIsTestMe2: "Variable('initial-clone').branch == 'test_me'"
+          branchIsTestHim2: "Variable('initial-clone').branch == 'test_him'"
+          branchIsTestHer: "Variable('initial-clone').branch == 'test_her'"
           twoByThree: "2 * 3 == 6"
        
   incredibly-another-freestyle-step:
