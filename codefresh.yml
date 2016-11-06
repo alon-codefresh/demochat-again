@@ -16,12 +16,6 @@ steps:
     when:
       condition:
         all:
-          commitMessageNotContainSkip: "includes(Variable('initial-clone').commitMessage, '[skip ci]') == false"
-          commitMessageNotContainSkip2: "includes(Variable('initial-clone').commitMessage, '[ci skip]') == false"
-          branchIsConditionalStep: "Variable('initial-clone').branch == 'conditional_step'"
-          branchIsConditionalStep2: "'${{CF_BRANCH}}' == 'conditional_step'"
-          badSyntax: "2 * 3 <> 55"
-          commitMessageIsHi: "'${{CF_COMMIT_MESSAGE}}' == 'hi'"
     
   yet-another-freestyle-step:
     description: Yet another freestyle step
@@ -31,13 +25,6 @@ steps:
     when:
       condition:
         any:
-          branchIsTestMe: "'${{CF_BRANCH}}' == 'test_me'"
-          branchIsTestHim: "'${{CF_BRANCH}}' == 'test_him'"
-          branchIsTestHer: "'${{CF_BRANCH}}' == 'test_her'"
-          branchIsTestMe2: "Variable('initial-clone').branch == 'test_me'"
-          branchIsTestHim2: "Variable('initial-clone').branch == 'test_him'"
-          branchIsTestHer2: "Variable('initial-clone').branch == 'test_her'"
-          twoByThree: "2 * 3 == 6"
        
   incredibly-another-freestyle-step:
     description: Incredibly another freestyle step
@@ -46,11 +33,7 @@ steps:
       - echo $(date)
     when:
       condition:
-        any:
-          conditionInBranchNameCaseIgnored: "match('${{CF_BRANCH}}', 'CONDITION', true)"
-          conditionInBranchNameCaseSensitive: "match('${{CF_BRANCH}}', 'CONDITION', false)"
-          someMath: "5 == 3 + 2"
-      
+
   on-no-another-freestyle-step:
     description: Oh no, another freestyle step
     image: ${{build-step}}
@@ -58,8 +41,8 @@ steps:
       - echo $(date)
     when:
       branch:
-        ignore: [ master, other, "", /CF.*/, /^startwith/ /endswith$/, /badregexp////, /strange-branch, ohno/, somebranch/whichlooks/likethis ]
-       
+        ignore: 
+        
   last-freestyle-step:
     description: Last freestyle step
     image: ${{build-step}}
@@ -67,5 +50,21 @@ steps:
       - echo $(date)
     when:
         branch:
-          only: [ conditional_step, /CF.*/, /bad/i ]
-
+          only: 
+          
+          
+  laster-freestyle-step:
+    description: Laster freestyle step
+    image: ${{build-step}}
+    commands:
+      - echo $(date)
+    when:
+        branch:
+        
+        
+  lastest-freestyle-step:
+    description: Lastest freestyle step
+    image: ${{build-step}}
+    commands:
+      - echo $(date)
+    when:
