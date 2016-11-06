@@ -7,6 +7,10 @@ steps:
     dockerfile: Dockerfile
     image-name: advance512demo/demochat
     tag: codefresh
+    when:
+      branch:
+        only:
+          - /.*conditional.*/
   
   another-step:
     description: Another step.
@@ -16,6 +20,8 @@ steps:
     when:
       condition:
         all:
+          branchCheck1: '${{CF_BRANCH}} == "conditional_step2'
+          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
     
   yet-another-freestyle-step:
     description: Yet another freestyle step
@@ -25,14 +31,18 @@ steps:
     when:
       condition:
         any:
-       
+          branchCheck1: '${{CF_BRANCH}} == "not_conditional'
+          branchCheck2: 'startsWith(Variable("initial-clone").branch, "con")'
+
   incredibly-another-freestyle-step:
     description: Incredibly another freestyle step
     image: ${{build-step}}
     commands:
       - echo $(date)
     when:
-      condition:
+      branch:
+        ignore:
+          [ bad_branch, /another_bad.*/, /CONDITION/ ]
 
   on-no-another-freestyle-step:
     description: Oh no, another freestyle step
@@ -41,7 +51,8 @@ steps:
       - echo $(date)
     when:
       branch:
-        ignore: 
+        ignore:
+          [ bad_branch, /another_bad.*/, /CONDITION/i ]
         
   last-freestyle-step:
     description: Last freestyle step
@@ -49,8 +60,11 @@ steps:
     commands:
       - echo $(date)
     when:
-        branch:
-          only: 
+      branch:
+        only:
+          [ conditional_step2 ]
+        ignore:
+          [ bad_branch, /another_bad.*/, /CONDITION/i ]
           
           
   laster-freestyle-step:
@@ -59,8 +73,14 @@ steps:
     commands:
       - echo $(date)
     when:
-        branch:
-        
+      condition:
+        all:
+          branchCheck1: '${{CF_BRANCH}} == "not_a_conditional_step'
+          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
+        any:
+          branchCheck1: '${{CF_BRANCH}} == "conditional_step2'
+          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
+
         
   lastest-freestyle-step:
     description: Lastest freestyle step
@@ -68,3 +88,10 @@ steps:
     commands:
       - echo $(date)
     when:
+      condition:
+        all:
+          branchCheck1: '${{CF_BRANCH}} != "not_a_conditional_step'
+          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
+        any:
+          branchCheck1: '${{CF_BRANCH}} != "conditional_step2'
+          branchCheck2: 'startsWith(Variable("initial-clone").branch, "not_really")'
