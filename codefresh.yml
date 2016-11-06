@@ -20,8 +20,8 @@ steps:
     when:
       condition:
         all:
-          branchCheck1: '${{CF_BRANCH}} == "conditional_step2'
-          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
+          branchCheck1: '${{CF_BRANCH}} == "conditional_step2"'
+          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
     
   yet-another-freestyle-step:
     description: Yet another freestyle step
@@ -31,8 +31,8 @@ steps:
     when:
       condition:
         any:
-          branchCheck1: '${{CF_BRANCH}} == "not_conditional'
-          branchCheck2: 'startsWith(Variable("initial-clone").branch, "con")'
+          branchCheck1: '${{CF_BRANCH}} == "not_conditional"'
+          branchCheck2: 'indexOf(Variable("initial-clone").branch, "con") == 0'
 
   incredibly-another-freestyle-step:
     description: Incredibly another freestyle step
@@ -75,11 +75,11 @@ steps:
     when:
       condition:
         all:
-          branchCheck1: '${{CF_BRANCH}} == "not_a_conditional_step'
-          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
+          branchCheck1: '${{CF_BRANCH}} == "not_a_conditional_step"'
+          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
         any:
           branchCheck1: '${{CF_BRANCH}} == "conditional_step2'
-          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
+          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
 
         
   lastest-freestyle-step:
@@ -91,7 +91,7 @@ steps:
       condition:
         all:
           branchCheck1: '${{CF_BRANCH}} != "not_a_conditional_step'
-          branchCheck2: 'startsWith(Variable("initial-clone").branch, "conditional")'
+          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
         any:
           branchCheck1: '${{CF_BRANCH}} != "conditional_step2'
-          branchCheck2: 'startsWith(Variable("initial-clone").branch, "not_really")'
+          branchCheck2: 'indexOf(Variable("initial-clone").branch, "not_really") != 0'
