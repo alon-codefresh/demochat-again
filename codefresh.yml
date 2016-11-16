@@ -23,7 +23,7 @@ steps:
       condition:
         all:
           branchCheck1: '"${{CF_BRANCH}}" == "conditional_step2"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
+          branchCheck2: 'indexOf(Variable("initial_clone").branch, "conditional") == 0'
     
   yet-another-freestyle-step:
     title: Yet another freestyle step
@@ -34,7 +34,7 @@ steps:
       condition:
         any:
           branchCheck1: '"${{CF_BRANCH}}" == "not_conditional"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "con") == 0'
+          branchCheck2: 'indexOf(Variable("initial_clone").branch, "con") == 0'
 
   incredibly-another-freestyle-step:
     title: Incredibly another freestyle step
@@ -79,10 +79,10 @@ steps:
       condition:
         all:
           branchCheck1: '"${{CF_BRANCH}}" == "not_a_conditional_step"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
+          branchCheck2: 'indexOf(Variable("initial_clone").branch, "conditional") == 0'
         any:
           branchCheck1: '"${{CF_BRANCH}}" == "conditional_step2"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
+          branchCheck2: 'indexOf(Variable("initial_clone").branch, "conditional") == 0'
 
         
   lastest-freestyle-step:
@@ -94,7 +94,7 @@ steps:
       condition:
         all:
           branchCheck1: '"${{CF_BRANCH}}" != "not_a_conditional_step"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
+          branchCheck2: 'indexOf(Variable("initial_clone").branch, "conditional") == 0'
         any:
           branchCheck1: '"${{CF_BRANCH}}" != "conditional_step2"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "not_really") != 0'
+          branchCheck2: 'indexOf(Variable("initial_clone").branch, "not_really") != 0'
