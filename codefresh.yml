@@ -3,6 +3,7 @@ steps:
 
   build-step:
     description: Building the image.
+    title: The build step
     type: build
     dockerfile: Dockerfile
     image-name: advance512demo/demochat
@@ -13,6 +14,7 @@ steps:
           - /.*conditional.*/
   
   another-step:
+    title: Another step!
     description: Another step.
     image: ${{build-step}}
     commands:
@@ -24,7 +26,7 @@ steps:
           branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
     
   yet-another-freestyle-step:
-    description: Yet another freestyle step
+    title: Yet another freestyle step
     image: ${{build-step}}
     commands:
       - echo $(date)
@@ -35,7 +37,7 @@ steps:
           branchCheck2: 'indexOf(Variable("initial-clone").branch, "con") == 0'
 
   incredibly-another-freestyle-step:
-    description: Incredibly another freestyle step
+    title: Incredibly another freestyle step
     image: ${{build-step}}
     commands:
       - echo $(date)
@@ -68,6 +70,7 @@ steps:
           
           
   laster-freestyle-step:
+    title: Laster  freestyle step... wtf?
     description: Laster freestyle step
     image: ${{build-step}}
     commands:
