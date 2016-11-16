@@ -12,6 +12,7 @@ steps:
       branch:
         only:
           - /.*conditional.*/
+          - /title/
   
   another-step:
     title: Another step!
