@@ -13,7 +13,7 @@ Enhancements
 
 ## 0.4.3 (2015-10-09)
 
-Fixes
+Fixessss
 
 * Issues with passport dependencies
 * XMPP message ID
