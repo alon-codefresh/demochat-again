@@ -95,7 +95,7 @@ Fixes
 
 ## 0.3.9 (2015-04-06)
 
-Deprecated
+Deprecated =[
 
 * `xmpp.host` configuration setting - use `xmpp.domain` instead
 
