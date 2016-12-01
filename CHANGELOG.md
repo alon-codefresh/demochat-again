@@ -46,7 +46,7 @@ Enhancements
 * Giphy can be toggled in settings
 * New translations: nl, de, pt, fr, jp, etc
 * Various Docker improvements (config volume, etc)
-* Better message time groupings
+* Better message time groupings!!!
 
 ## 0.4.0 (2015-06-04)
 
