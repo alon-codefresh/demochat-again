@@ -25,7 +25,7 @@ Enhancements
 
 ## 0.4.2 (2015-07-14)
 
-Fixes
+Fixes!!!
 
 * Update dependencies
 
