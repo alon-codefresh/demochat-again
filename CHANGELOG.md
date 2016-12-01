@@ -7,7 +7,7 @@ Fixes
 
 ## 0.4.4 (2015-10-26)
 
-Enhancements
+Enhancementsss
 
 * Support for Node v4
 
