@@ -206,3 +206,4 @@ Fixes
 ## 0.3.0 (2015-02-06)
 
 Enter enter!
+Ohhh yeah!
