@@ -142,7 +142,7 @@ Fixes
 
 ## 0.3.5 (2015-02-26)
 
-Fixes
+Fixes!
 
 * Asset pipeline outputs relative paths (#208)
 * Temporary upload files are cleaned up
