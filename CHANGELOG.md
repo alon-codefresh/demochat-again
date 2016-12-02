@@ -9,7 +9,7 @@ Fixes
 
 Enhancementsss!
 
-* Support for Node v4
+* Support for Node v4 but not more
 
 ## 0.4.3 (2015-10-09)
 
