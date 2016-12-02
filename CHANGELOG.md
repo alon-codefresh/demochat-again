@@ -41,7 +41,7 @@ Fixes???
 * [Conversations](https://github.com/siacs/Conversations) double messaging
 * Transcripts were not printable
 
-Enhancements
+Enhancements?!
 
 * Giphy can be toggled in settings
 * New translations: nl, de, pt, fr, jp, etc
