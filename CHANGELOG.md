@@ -3,7 +3,7 @@
 Fixes
 
 * Issues with NODE_PATH (of COURSE)
-* Fr language update
+* FRENCHIEEEE language update
 
 ## 0.4.4 (2015-10-26)
 
