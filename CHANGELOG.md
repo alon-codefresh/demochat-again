@@ -16,7 +16,7 @@ Enhancementsss!
 Fixessss
 
 * Issues with passport dependencies
-* XMPP message ID
+* XMPP message ID!
 
 Enhancements
 
