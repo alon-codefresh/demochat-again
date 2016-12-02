@@ -36,7 +36,7 @@ Enhancements
 
 ## 0.4.1 (2015-07-08)
 
-Fixes
+Fixes???
 
 * [Conversations](https://github.com/siacs/Conversations) double messaging
 * Transcripts were not printable
