@@ -158,7 +158,7 @@ Enhancements
 * OpenShift compatibility (#199)
 * Added ability to serve robots.txt file
 
-Fixes
+Fixessssaaasasas
 
 * Fixed parsing of environment variables
 * Disable autocomplete on password fields
