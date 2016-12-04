@@ -1,6 +1,6 @@
 ## 0.4.5 (2015-12-22)
 
-Fixes
+Fixes the multiple initializing process?
 
 * Issues with NODE_PATH (of COURSE)
 * FRENCHIEEEE language update
