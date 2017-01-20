@@ -1,97 +1,51 @@
 version: '1.0'
 steps:
+    build-step:
+        description: Building the image.
+        title: Build the Docker image...
+        type: build
+        dockerfile: Dockerfile
+        image-name: advance512demo/demochat
+        tag: codefresh
+    unit-test-via-gulp:
+      description: Running unit test via gulp.
+      title: Run the Gulp unit test...
+      image: monostream/nodejs-gulp-bower:latest
+      fail-fast: false
+      working-directory : ${{initial-clone}}
+      commands:
+        - npm install
+        - gulp test
+        - echo $(date)
+    unit-test-via-npm:
+      description: Running unit test via npm.
+      image: ${{build-step}}
+      fail-fast: false
+      commands:
+        - npm test
+        - echo $(date)
+    composition-step:
+      title: Running as a composition...
+      description: Attempting to run as part of composition.
+      type: composition
+      composition: 
+        version: '2'
+        services:
+          app:
+            image: 'advance512demo/demochat:master'
+            ports:
+              - 5000
+            depends_on:
+              - mongo
+          mongo:
+            image: mongo
+      composition-candidates:
+        main:
+          image: nhoag/curl
+          command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
 
-  build-step:
-    description: Building the image.
-    type: build
-    dockerfile: Dockerfile
-    image-name: advance512demo/demochat
-    tag: codefresh
-    when:
-      branch:
-        only:
-          - /.*conditional.*/
-  
-  another-step:
-    description: Another step.
-    image: ${{build-step}}
-    commands:
-      - echo $(date)
-    when:
-      condition:
-        all:
-          branchCheck1: '"${{CF_BRANCH}}" == "conditional_step2"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
-    
-  yet-another-freestyle-step:
-    description: Yet another freestyle step
-    image: ${{build-step}}
-    commands:
-      - echo $(date)
-    when:
-      condition:
-        any:
-          branchCheck1: '"${{CF_BRANCH}}" == "not_conditional"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "con") == 0'
-
-  incredibly-another-freestyle-step:
-    description: Incredibly another freestyle step
-    image: ${{build-step}}
-    commands:
-      - echo $(date)
-    when:
-      branch:
-        ignore:
-          [ bad_branch, /another_bad.*/, /CONDITION/ ]
-
-  on-no-another-freestyle-step:
-    description: Oh no, another freestyle step
-    image: ${{build-step}}
-    commands:
-      - echo $(date)
-    when:
-      branch:
-        ignore:
-          [ bad_branch, /another_bad.*/, /CONDITION/i ]
-        
-  last-freestyle-step:
-    description: Last freestyle step
-    image: ${{build-step}}
-    commands:
-      - echo $(date)
-    when:
-      branch:
-        only:
-          [ conditional_step2 ]
-        ignore:
-          [ bad_branch, /another_bad.*/, /CONDITION/i ]
-          
-          
-  laster-freestyle-step:
-    description: Laster freestyle step
-    image: ${{build-step}}
-    commands:
-      - echo $(date)
-    when:
-      condition:
-        all:
-          branchCheck1: '"${{CF_BRANCH}}" == "not_a_conditional_step"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
-        any:
-          branchCheck1: '"${{CF_BRANCH}}" == "conditional_step2"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
-
-        
-  lastest-freestyle-step:
-    description: Lastest freestyle step
-    image: ${{build-step}}
-    commands:
-      - echo $(date)
-    when:
-      condition:
-        all:
-          branchCheck1: '"${{CF_BRANCH}}" != "not_a_conditional_step"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "conditional") == 0'
-        any:
-          branchCheck1: '"${{CF_BRANCH}}" != "conditional_step2"'
-          branchCheck2: 'indexOf(Variable("initial-clone").branch, "not_really") != 0'
+    push-step:
+        description: Pushing image to Docker hub.
+        type: push
+        candidate: ${{build-step}}
+        tag: ${{CF_BRANCH}}        

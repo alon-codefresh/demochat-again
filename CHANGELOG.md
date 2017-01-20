@@ -1,22 +1,22 @@
 ## 0.4.5 (2015-12-22)
 
-Fixes
+Fixes the multiple initializing process?!!123123456456345345
 
-* Issues with NODE_PATH
-* Fr language update
+* Issues with NODE_PATH (of COURSE)
+* FRENCHIEEEE language update
 
 ## 0.4.4 (2015-10-26)
 
-Enhancements
+Enhancementsss!!!
 
-* Support for Node v4
+* Support for Node v4 but not more
 
 ## 0.4.3 (2015-10-09)
 
-Fixes
+Fixessss
 
 * Issues with passport dependencies
-* XMPP message ID
+* XMPP message ID!
 
 Enhancements
 
@@ -25,7 +25,7 @@ Enhancements
 
 ## 0.4.2 (2015-07-14)
 
-Fixes
+Fixes!!!2
 
 * Update dependencies
 
@@ -36,17 +36,17 @@ Enhancements
 
 ## 0.4.1 (2015-07-08)
 
-Fixes
+Fixes???
 
 * [Conversations](https://github.com/siacs/Conversations) double messaging
 * Transcripts were not printable
 
-Enhancements
+Enhancements?!
 
 * Giphy can be toggled in settings
 * New translations: nl, de, pt, fr, jp, etc
 * Various Docker improvements (config volume, etc)
-* Better message time groupings
+* Better message time groupings!!!
 
 ## 0.4.0 (2015-06-04)
 
@@ -60,7 +60,7 @@ Enhancements
 
 ## 0.3.13 (2015-05-29)
 
-Fixes
+Fixes!
 
 * Multiple layout bugs due to overflowing content in Firefox
 * Layout issue introduced by Chrome 43
@@ -95,7 +95,7 @@ Fixes
 
 ## 0.3.9 (2015-04-06)
 
-Deprecated
+Deprecated =[
 
 * `xmpp.host` configuration setting - use `xmpp.domain` instead
 
@@ -142,7 +142,7 @@ Fixes
 
 ## 0.3.5 (2015-02-26)
 
-Fixes
+Fixes!
 
 * Asset pipeline outputs relative paths (#208)
 * Temporary upload files are cleaned up
@@ -158,7 +158,7 @@ Enhancements
 * OpenShift compatibility (#199)
 * Added ability to serve robots.txt file
 
-Fixes
+Fixessssaaasasas
 
 * Fixed parsing of environment variables
 * Disable autocomplete on password fields
@@ -204,3 +204,7 @@ Fixes
 * Fixes related to file upload functionality
 
 ## 0.3.0 (2015-02-06)
+
+Enter enter!
+Ohhh baby, yeah!!!
+Last time.
