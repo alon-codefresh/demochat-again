@@ -5,7 +5,7 @@ steps:
         title: Build the Docker image...
         type: build
         dockerfile: Dockerfile
-        image-name: advance512demo/demochat
+        image-name: aloncodefresh/demochat
         tag: codefresh
     unit-test-via-gulp:
       description: Running unit test via gulp.
@@ -32,7 +32,7 @@ steps:
         version: '2'
         services:
           app:
-            image: 'advance512demo/demochat:master'
+            image: 'aloncodefresh/demochat:master'
             ports:
               - 5000
             depends_on:
