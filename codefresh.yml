@@ -24,7 +24,7 @@ steps:
             - 27017
       test:
         image: nhoag/curl
-        command: echo "starting" | sleep 30 | echo 'it maybe works'
+        command: sleep 30 | echo 'it maybe works'
     
 
     travis_step_2:
@@ -41,5 +41,5 @@ steps:
           image: mongo
       test:
         image: nhoag/curl
-        command: echo "starting" | sleep 30 | echo 'it maybe works'
+        command: sleep 30 | echo 'it maybe works'
     
