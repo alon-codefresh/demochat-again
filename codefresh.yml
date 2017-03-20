@@ -16,8 +16,25 @@ steps:
           ports:
             - 6379
           environment:
-            - SOME_VAR: "Test 123"
-            - SOME_OTHER_VAR: "Test 123"
+            SOME_VAR: "Test 123"
+            SOME_OTHER_VAR: "Test 123"
+        mongo:
+          image: mongo
+      test:
+        image: nhoag/curl
+        command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
+    
+
+    travis_step_2:
+      type: travis
+      services:
+        redis:
+          image: redis
+          ports:
+            - 6379
+          environment:
+            - SOME_VAR="Test 123"
+            - "SOME_OTHER_VAR=Test123"
         mongo:
           image: mongo
       test:
