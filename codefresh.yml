@@ -8,26 +8,7 @@ steps:
         image-name: aloncodefresh/demochat
         tag: codefresh
         
-    travis_step:
-      type: travis
-      services:
-        redis:
-          image: redis
-          ports:
-            - 6379
-          environment:
-            SOME_VAR: "Test 123"
-            SOME_OTHER_VAR: "Test 123"
-        mongo:
-          image: mongo
-          ports:
-            - 27017
-      test:
-        image: nhoag/curl
-        command: sleep 30 | echo 'it maybe works'
-    
-
-    travis_step_2:
+    travis_step_another:
       type: travis
       services:
         redis:
