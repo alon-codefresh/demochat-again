@@ -7,45 +7,20 @@ steps:
         dockerfile: Dockerfile
         image-name: aloncodefresh/demochat
         tag: codefresh
-    unit-test-via-gulp:
-      description: Running unit test via gulp.
-      title: Run the Gulp unit test...
-      image: monostream/nodejs-gulp-bower:latest
-      fail-fast: false
-      working-directory : ${{initial-clone}}
-      commands:
-        - npm install
-        - gulp test
-        - echo $(date)
-    unit-test-via-npm:
-      description: Running unit test via npm.
-      image: ${{build-step}}
-      fail-fast: false
-      commands:
-        - npm test
-        - echo $(date)
-    composition-step:
-      title: Running as a composition...
-      description: Attempting to run as part of composition.
-      type: composition
-      composition: 
-        version: '2'
-        services:
-          app:
-            image: 'aloncodefresh/demochat:master'
-            ports:
-              - 5000
-            depends_on:
-              - mongo
-          mongo:
-            image: mongo
-      composition-candidates:
-        main:
-          image: nhoag/curl
-          command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
-
-    push-step:
-        description: Pushing image to Docker hub.
-        type: push
-        candidate: ${{build-step}}
-        tag: ${{CF_BRANCH}}        
+        
+    travis_step:
+      type: travis:
+      services:
+        redis:
+          image: redis
+          ports:
+            - 6379
+          environment:
+            - SOME_VAR: "Test 123"
+            - SOME_OTHER_VAR: "Test 123"
+        mongo:
+          image: mongo
+      test:
+        image: nhoag/curl
+        command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
+    
