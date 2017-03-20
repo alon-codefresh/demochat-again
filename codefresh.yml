@@ -9,7 +9,7 @@ steps:
         tag: codefresh
         
     travis_step:
-      type: travis:
+      type: travis
       services:
         redis:
           image: redis
