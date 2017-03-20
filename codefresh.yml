@@ -20,9 +20,11 @@ steps:
             SOME_OTHER_VAR: "Test 123"
         mongo:
           image: mongo
+          ports:
+            - 27017
       test:
         image: nhoag/curl
-        command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
+        command: echo "starting" | sleep 30 | echo 'it maybe works'
     
 
     travis_step_2:
@@ -39,5 +41,5 @@ steps:
           image: mongo
       test:
         image: nhoag/curl
-        command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
+        command: echo "starting" | sleep 30 | echo 'it maybe works'
     
