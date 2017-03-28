@@ -1,51 +1,34 @@
 version: '1.0'
 steps:
-    build-step:
-        description: Building the image.
-        title: Build the Docker image...
-        type: build
-        dockerfile: Dockerfile
-        image-name: aloncodefresh/demochat
-        tag: codefresh
-    unit-test-via-gulp:
-      description: Running unit test via gulp.
-      title: Run the Gulp unit test...
-      image: monostream/nodejs-gulp-bower:latest
-      fail-fast: false
-      working-directory : ${{initial-clone}}
-      commands:
-        - npm install
-        - gulp test
-        - echo $(date)
-    unit-test-via-npm:
-      description: Running unit test via npm.
-      image: ${{build-step}}
-      fail-fast: false
-      commands:
-        - npm test
-        - echo $(date)
-    composition-step:
-      title: Running as a composition...
-      description: Attempting to run as part of composition.
-      type: composition
-      composition: 
-        version: '2'
-        services:
-          app:
-            image: 'aloncodefresh/demochat:master'
-            ports:
-              - 5000
-            depends_on:
-              - mongo
-          mongo:
-            image: mongo
-      composition-candidates:
-        main:
-          image: nhoag/curl
-          command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
+  SetupTestComposition:
+    type: composition
+    title: Setup Test Composition
+    composition:
+      version: '2'
+      services:
+        postgres:
+          restart: always
+          image: 'postgres:latest'
+          ports:
+            - '5432'
+          volumes:
+            - '${{CF_VOLUME}}:/var/lib/postgres/data'
+          environment:
+            - POSTGRES_DB=testdb
+      volumes:
+        '${{CF_VOLUME}}':
+          external: true
+    working_directory: '${{main_clone}}'
+    composition_candidates:
+      test:
+        image: redis:latest
+        volumes:
+          - '${{CF_VOLUME_NAME}}:/cf_volume'
+        command: |
+          sh -c ' ls -l '
+        environment:
+          - API_SERVICE=web
+          - API_PORT=3000
+        depends_on:
+          - postgres
 
-    push-step:
-        description: Pushing image to Docker hub.
-        type: push
-        candidate: ${{build-step}}
-        tag: ${{CF_BRANCH}}        
