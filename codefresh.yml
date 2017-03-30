@@ -14,7 +14,7 @@ steps:
       test:
         image: nhoag/curl
         commands: 
-          - sleep 30 | curl www.google.com
+          - curl www.google.com
     
     integration_test2:
       type: integration-test
