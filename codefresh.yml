@@ -12,10 +12,10 @@ steps:
       type: integration-test
       preconfigured_services: [ redis, postgresql, mongodb, mysql, couchdb, rabbitmq, memcached ]
       test:
-        image: redis:latest
+        image: nhoag/curl
         commands: 
           - sleep 30
-          - redis-cli -h redis
+          - echo "I would have run redis-cli -h redis right about now"
     
     integration_test2:
       type: integration-test
@@ -30,7 +30,7 @@ steps:
           - echo sleeping 30
           - sleep 30
           - echo testing
-          - redis-cli -h redis
+          - echo "I would have run redis-cli -h redis right about now"
           - echo done
     
     integration_test3:
@@ -47,5 +47,5 @@ steps:
           - echo sleeping 30
           - sleep 30
           - echo testing
-          - redis-cli -h redis
+          - echo "I would have run redis-cli -h redis right about now"
           - echo done
