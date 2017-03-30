@@ -10,7 +10,7 @@ steps:
         
     integration_test1:
       type: integration-test
-      services: [ redis, postgresql, mongodb, mysql, couchdb, rabbitmq, memcached ]
+      preconfigured_services: [ redis, postgresql, mongodb, mysql, couchdb, rabbitmq, memcached ]
       test:
         image: redis:latest
         commands: 
@@ -19,7 +19,7 @@ steps:
     
     integration_test2:
       type: integration-test
-      containers: 
+      services: 
         redis:
           image: redis
           ports:
@@ -35,8 +35,8 @@ steps:
     
     integration_test3:
       type: integration-test
-      services: [  postgresql, mongodb, mysql, couchdb, rabbitmq, memcached ]
-      containers: 
+      preconfigured_services: [  postgresql, mongodb, mysql, couchdb, rabbitmq, memcached ]
+      services: 
         redis:
           image: redis
           ports:
