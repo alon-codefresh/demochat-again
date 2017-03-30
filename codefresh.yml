@@ -8,20 +8,44 @@ steps:
         image-name: aloncodefresh/demochat
         tag: codefresh
         
-    simple_travis_step:
-      type: simple_travis
-      services:
-        - redis
-        - memcached
-        - mariadb
-      test:
-        image: redis:latest
-        command: sh -c 'sleep 30 | redis-cli -h redis'
-    
-    simple_travis_step_lots_of_stuff:
-      type: simple_travis
+    integration_test1:
+      type: integration-test
       services: [ redis, postgresql, mongodb, mysql, couchdb, rabbitmq, memcached ]
       test:
         image: redis:latest
-        command: sh -c 'sleep 30 | redis-cli -h redis'
+        commands: 
+          - sleep 30
+          - redis-cli -h redis
     
+    integration_test2:
+      type: integration-test
+      containers: 
+        redis:
+          image: redis
+          ports:
+            - 6379
+      test:
+        image: redis:latest
+        commands: 
+          - echo sleeping 30
+          - sleep 30
+          - echo testing
+          - redis-cli -h redis
+          - echo done
+    
+    integration_test3:
+      type: integration-test
+      services: [  postgresql, mongodb, mysql, couchdb, rabbitmq, memcached ]
+      containers: 
+        redis:
+          image: redis
+          ports:
+            - 6379
+      test:
+        image: redis:latest
+        commands: 
+          - echo sleeping 30
+          - sleep 30
+          - echo testing
+          - redis-cli -h redis
+          - echo done
