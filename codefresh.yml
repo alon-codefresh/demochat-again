@@ -26,10 +26,11 @@ steps:
       test:
         image: nhoag/curl
         commands: 
-          - echo sleeping 30
-          - echo testing
+          - echo "sleeping 30"
+          - echo "testing"
           - echo "I would have run redis-cli -h redis right about now"
-          - echo done
+          - ls -l
+          - echo "done"
     
     integration_test3:
       type: integration-test
@@ -42,7 +43,8 @@ steps:
       test:
         image: redis:latest
         commands: 
-          - echo sleeping 30
+          - echo "sleeping 30"
           - echo "I am going to fail since redis:latest has no bash in it, and these commadns are chained as a single bash command"
           - echo "I would have run redis-cli -h redis right about now"
-          - echo done
+          - redis-cli -h redis
+          - echo "done"
