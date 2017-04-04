@@ -24,7 +24,7 @@ steps:
           ports:
             - 6379
       test:
-        image: nhoag/curl
+        image: phusion/baseimage
         commands: 
           - echo "sleeping 30"
           - echo "testing"
