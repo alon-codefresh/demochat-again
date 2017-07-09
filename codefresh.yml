@@ -15,7 +15,9 @@ steps:
           - ls
           - ls -l
           - ls -a
-          - echo this3: ${{CF_BUILD_ID}}
+          - echo this1: $SOME_VAR
+          - echo this2: ${SOME_VAR}
+          - echo this3: ${{SOME_VAR}}
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
