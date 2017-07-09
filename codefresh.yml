@@ -7,23 +7,12 @@ steps:
         dockerfile: Dockerfile
         image-name: aloncodefresh/demochat
         tag: codefresh
-    unit-test-via-gulp:
-      description: Running unit test via gulp.
-      title: Run the Gulp unit test...
-      image: monostream/nodejs-gulp-bower:latest
-      fail-fast: false
-      working-directory : ${{initial-clone}}
-      commands:
-        - npm install
-        - gulp test
-        - echo $(date)
-    unit-test-via-npm:
-      description: Running unit test via npm.
-      image: ${{build-step}}
-      fail-fast: false
-      commands:
-        - npm test
-        - echo $(date)
+    freestyle-step:
+        description: Freestyle step..
+        title: Free styling
+        image-name: aloncodefresh/demochat
+        commands:
+          - npm ls 
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
@@ -43,7 +32,6 @@ steps:
         main:
           image: nhoag/curl
           command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
-
     push-step:
         description: Pushing image to Docker hub.
         type: push
