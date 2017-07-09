@@ -10,7 +10,7 @@ steps:
     freestyle-step:
         description: Freestyle step..
         title: Free styling
-        image-name: aloncodefresh/demochat
+        image: aloncodefresh/demochat
         commands:
           - npm ls 
     composition-step:
