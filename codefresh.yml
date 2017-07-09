@@ -13,11 +13,11 @@ steps:
         image: nhoag/curl
         commands:
           - ls
-          - ls -l
-          - ls -a
           - echo this1: $SOME_VAR
           - echo this2: ${SOME_VAR}
           - echo this3: ${{SOME_VAR}}
+          - ls -l
+          - ls -a         
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
