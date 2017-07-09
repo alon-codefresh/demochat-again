@@ -15,7 +15,6 @@ steps:
           - ls
           - ls -l
           - ls -a
-          - echo this1: $CF_BUILD_ID
           - echo this2: ${CF_BUILD_ID}
           - echo this3: ${{CF_BUILD_ID}}
     composition-step:
