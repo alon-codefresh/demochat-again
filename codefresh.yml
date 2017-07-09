@@ -13,9 +13,9 @@ steps:
         image: nhoag/curl
         commands:
           - "ls"
-          - "echo this1: $SOME_VAR"
-          - "echo this2: ${SOME_VAR}"
-          - "echo this3: ${{SOME_VAR}}"
+#          - "echo this1: $SOME_VAR"
+#          - "echo this2: ${SOME_VAR}"
+#          - "echo this3: ${{SOME_VAR}}"
           - ls -l
           - ls -a         
     composition-step:
