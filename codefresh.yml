@@ -10,9 +10,11 @@ steps:
     freestyle-step:
         description: Freestyle step..
         title: Free styling
-        image: aloncodefresh/demochat
+        image: nhoag/curl
         commands:
-          - npm ls 
+          - ls
+          - ls -l
+          - ls -a
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
