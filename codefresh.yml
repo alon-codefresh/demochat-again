@@ -22,7 +22,7 @@ steps:
           - echo /codefresh/volume/env_vars_to_export IS
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
-          - /codefresh/volume/cf_export SOME=VALUE
+          - /codefresh/volume/cf_export SOME=VALUE1
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
@@ -38,11 +38,27 @@ steps:
           - echo /codefresh/volume/env_vars_to_export IS
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
-          - echo ANOTHER=VALUE >> /codefresh/volume/env_vars_to_export
+          - echo ANOTHER=VALUE2 >> /codefresh/volume/env_vars_to_export
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END          
+    freestyle-step3:
+        description: Freestyle step 3..
+        title: Free styling
+        image: nhoag/curl
+        commands:
+          - echo "Step 3"
+          - ls /codefresh/volume
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+          - cf_export LAST=VALUE3
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS AFTER
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END                    
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
