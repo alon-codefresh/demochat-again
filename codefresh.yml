@@ -51,19 +51,14 @@ steps:
         version: '2'
         services:
           app:
-            image: 'aloncodefresh/demochat:master'
-            ports:
-              - 5000
-            depends_on:
-              - mongo
-          mongo:
-            image: mongo
+            image: nhoag/curl
+            environment:
+              - echo ANOTHER is ${{ANOTHER}} and also ${ANOTHER} and also $ANOTHER
+          app2:
+            image: nhoag/curl
+            environment:
+              - echo SOME is ${{SOME}}              
       composition-candidates:
         main:
           image: nhoag/curl
-          command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
-    push-step:
-        description: Pushing image to Docker hub.
-        type: push
-        candidate: ${{build-step}}
-        tag: ${{CF_BRANCH}}        
+          command: bash -c "sleep 20" | echo 'works'
