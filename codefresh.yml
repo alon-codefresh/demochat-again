@@ -27,6 +27,32 @@ steps:
           - echo /codefresh/volume/cf_export IS
           - cat /codefresh/volume/cf_export
           - echo ---------------------------- END
+          - /codefresh/volume/cf_export SOME=VALUE
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+    freestyle-step2:
+        description: Freestyle step 2..
+        title: Free styling
+        image: nhoag/curl
+        commands:
+          - "ls"
+#          - "echo this1: $SOME_VAR"
+#          - "echo this2: ${SOME_VAR}"
+#          - "echo this3: ${{SOME_VAR}}"
+          - ls -l
+          - ls -a
+          - ls /codefresh/volume
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+          - /codefresh/volume/cf_export ANOTHER="VALUE OH YES"
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END          
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
