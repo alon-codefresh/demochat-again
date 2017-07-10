@@ -34,7 +34,7 @@ steps:
           - echo /codefresh/volume/env_vars_to_export IS
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
-          - /codefresh/volume/cf_export ANOTHER="VALUE OH YES"
+          - echo ANOTHER=VALUE >> /codefresh/volume/env_vars_to_export
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
