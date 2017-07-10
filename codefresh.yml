@@ -19,8 +19,14 @@ steps:
           - ls -l
           - ls -a
           - ls /codefresh/volume
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export:
           - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+          - echo ---------------------------- START
+          - echo /codefresh/volume/cf_export:
           - cat /codefresh/volume/cf_export
+          - echo ---------------------------- END
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
