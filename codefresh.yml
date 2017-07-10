@@ -15,6 +15,10 @@ steps:
           - echo "step 1"
           - ls /codefresh/volume
           - echo ---------------------------- START
+          - echo /codefresh/volume/cf_export IS
+          - cat /codefresh/volume/cf_export
+          - echo ---------------------------- END          
+          - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
