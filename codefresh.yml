@@ -1,15 +1,15 @@
 version: '1.0'
 steps:
     build-step:
-        description: Building the image.
-        title: Build the Docker image...
-        type: build
-        dockerfile: Dockerfile
-        image-name: aloncodefresh/demochat
-        tag: codefresh
+      description: Building the image.
+      title: Initializing Process
+      type: build
+      dockerfile: Dockerfile
+      image-name: aloncodefresh/demochat
+      tag: codefresh
     unit-test-via-gulp:
       description: Running unit test via gulp.
-      title: Run the Gulp unit test...
+      title: Initializing Process
       image: monostream/nodejs-gulp-bower:latest
       fail-fast: false
       working-directory : ${{initial-clone}}
@@ -19,13 +19,14 @@ steps:
         - echo $(date)
     unit-test-via-npm:
       description: Running unit test via npm.
+      title: Initializing Process
       image: ${{build-step}}
       fail-fast: false
       commands:
         - npm test
         - echo $(date)
     composition-step:
-      title: Running as a composition...
+      title: Initializing Process
       description: Attempting to run as part of composition.
       type: composition
       composition: 
@@ -45,7 +46,7 @@ steps:
           command: bash -c "sleep 20 && curl http://app:5000/" | echo 'works'
 
     push-step:
-        description: Pushing image to Docker hub.
+        title: Initializing Process
         type: push
         candidate: ${{build-step}}
         tag: ${{CF_BRANCH}}        
