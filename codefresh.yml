@@ -23,7 +23,7 @@ steps:
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
           - export EXPORTED=EXPVAL
-          - /codefresh/volume/cf_export SOME=VALUE1 EXPORTED=\$\{EXPORTED}
+          - /codefresh/volume/cf_export SOME=VALUE1 EXPORTED
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
