@@ -1,5 +1,5 @@
 version: '1.0'
-steps:
+steps: 
     build-step:
         description: Building the image.
         title: Build the Docker image...
