@@ -16,16 +16,12 @@ steps:
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/cf_export IS
-          - cat /codefresh/volume/cf_export
           - echo ---------------------------- END          
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
-          - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
-          - /codefresh/volume/cf_export SOME=VALUE1
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
-          - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
     freestyle-step2:
         description: Freestyle step 2..
@@ -36,12 +32,9 @@ steps:
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
-          - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
-          - echo ANOTHER=VALUE2 >> /codefresh/volume/env_vars_to_export
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
-          - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END          
     freestyle-step3:
         description: Freestyle step 3..
@@ -52,12 +45,9 @@ steps:
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
-          - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
-          - cf_export LAST=VALUE3
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
-          - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END                    
     composition-step:
       title: Running as a composition...
