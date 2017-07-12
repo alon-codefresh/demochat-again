@@ -33,7 +33,7 @@ steps:
     freestyle-step2:
         description: Freestyle step 2..
         title: Free styling 2
-        image: nhoag/curl
+        image: alpine:latest
         commands:
           - echo "Step 2"
           - ls /codefresh/volume
