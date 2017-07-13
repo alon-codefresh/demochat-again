@@ -13,7 +13,7 @@ steps:
         image: nhoag/curl
         commands:
           - echo "step 1"
-          - echo "Path is: $PATH"          
+          - echo "Path is $PATH"          
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/cf_export IS
@@ -37,7 +37,7 @@ steps:
         image: nhoag/curl
         commands:
           - echo "Step 2"
-          - echo "Path is: $PATH"
+          - echo "Path is $PATH"
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
@@ -54,7 +54,7 @@ steps:
         image: nhoag/curl
         commands:
           - echo "Step 3"
-          - echo "Path is: $PATH"
+          - echo "Path is $PATH"
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
@@ -71,7 +71,7 @@ steps:
         image: alpine:latest
         commands:
           - echo "step 4"
-          - echo "Path is: $PATH"          
+          - echo "Path is $PATH"          
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/cf_export IS
@@ -95,7 +95,7 @@ steps:
         image: alpine:latest
         commands:
           - echo "Step 5"
-          - echo "Path is: $PATH"          
+          - echo "Path is $PATH"          
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
@@ -112,7 +112,7 @@ steps:
         image: alpine:latest
         commands:
           - echo "Step 6"
-          - echo "Path is: $PATH"          
+          - echo "Path is $PATH"          
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS
