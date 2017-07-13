@@ -15,19 +15,19 @@ steps:
           - echo "step 1"
           - echo "Path is $PATH"
           - echo /usr/local/sbin is
-          - ls /usr/local/sbin is
+          - ls -l /usr/local/sbin
           - echo /usr/local/bin is
-          - ls /usr/local/bin is
+          - ls -l /usr/local/bin
           - echo /usr/sbin is
-          - ls /usr/sbin is
+          - ls -l /usr/sbin
           - echo /usr/bin is
-          - ls /usr/bin is
+          - ls -l /usr/bin
           - echo /sbin is 
-          - ls /sbin is 
+          - ls -l /sbin
           - echo /bin is
-          - ls /bin is
+          - ls -l /bin
           - echo Volume is
-          - ls /codefresh/volume
+          - ls -l /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/cf_export IS
           - cat /codefresh/volume/cf_export
