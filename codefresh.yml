@@ -33,7 +33,7 @@ steps:
     freestyle-step2:
         description: Freestyle step 2..
         title: Free styling 2
-        image: alpine:latest
+        image: nhoag/curl
         commands:
           - echo "Step 2"
           - ls /codefresh/volume
@@ -61,7 +61,62 @@ steps:
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
-          - echo ---------------------------- END                    
+          - echo ---------------------------- END        
+    freestyle-step:
+        description: Freestyle step 4..
+        title: Free styling 4
+        image: alpine:latest
+        commands:
+          - echo "step 4"
+          - ls /codefresh/volume
+          - echo ---------------------------- START
+          - echo /codefresh/volume/cf_export IS
+          - cat /codefresh/volume/cf_export
+          - echo ---------------------------- END          
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+          - export EXPORTED2=EXPVAL
+          - EXPORTED2=EXPVAL echo Exported2 is $EXPORTED2
+          - echo CF_BRANCH is $CF_BRANCH 
+          - EXPORTED2=EXPVAL2 /codefresh/volume/cf_export SOME2=VALUE1 EXPORTED2 CF_BRANCH
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS AFTER
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+    freestyle-step2:
+        description: Freestyle step 5..
+        title: Free styling 5
+        image: alpine:latest
+        commands:
+          - echo "Step 5"
+          - ls /codefresh/volume
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+          - echo ANOTHER2=VALUE2 >> /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS AFTER
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END          
+    freestyle-step6:
+        description: Freestyle step 6..
+        title: Free styling 66
+        image: alpine:latest
+        commands:
+          - echo "Step 6"
+          - ls /codefresh/volume
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END
+          - cf_export LAST2=VALUE3
+          - echo ---------------------------- START
+          - echo /codefresh/volume/env_vars_to_export IS AFTER
+          - cat /codefresh/volume/env_vars_to_export
+          - echo ---------------------------- END                
     composition-step:
       title: Running as a composition...
       description: Attempting to run as part of composition.
@@ -73,10 +128,12 @@ steps:
             image: nhoag/curl
             environment:
               - echo ANOTHER is ${{ANOTHER}} and also ${ANOTHER} and also $ANOTHER
+              - echo ANOTHER2 is ${{ANOTHER2}} and also ${ANOTHER2} and also $ANOTHER2
           app2:
             image: nhoag/curl
             environment:
-              - echo SOME is ${{SOME}}              
+              - echo SOME is ${{SOME}}  
+              - echo SOME2 is ${{SOME2}}                            
       composition-candidates:
         main:
           image: nhoag/curl
