@@ -13,7 +13,20 @@ steps:
         image: nhoag/curl
         commands:
           - echo "step 1"
-          - echo "Path is $PATH"          
+          - echo "Path is $PATH"
+          - echo /usr/local/sbin is
+          - ls /usr/local/sbin is
+          - echo /usr/local/bin is
+          - ls /usr/local/bin is
+          - echo /usr/sbin is
+          - ls /usr/sbin is
+          - echo /usr/bin is
+          - ls /usr/bin is
+          - echo /sbin is 
+          - ls /sbin is 
+          - echo /bin is
+          - ls /bin is
+          - echo Volume is
           - ls /codefresh/volume
           - echo ---------------------------- START
           - echo /codefresh/volume/cf_export IS
