@@ -62,7 +62,7 @@ steps:
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END        
-    freestyle-step:
+    freestyle-step4:
         description: Freestyle step 4..
         title: Free styling 4
         image: alpine:latest
@@ -85,7 +85,7 @@ steps:
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
-    freestyle-step2:
+    freestyle-step5:
         description: Freestyle step 5..
         title: Free styling 5
         image: alpine:latest
