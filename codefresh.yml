@@ -37,9 +37,9 @@ steps:
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
           - export EXPORTED=EXPVAL
-          - EXPORTED=EXPVAL echo Exported is $EXPORTED
+          - echo Exported is $EXPORTED
           - echo CF_BRANCH is $CF_BRANCH 
-          - EXPORTED=EXPVAL cf_export SOME=VALUE1 EXPORTED CF_BRANCH
+          - cf_export SOME=VALUE1 EXPORTED CF_BRANCH
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
@@ -95,9 +95,9 @@ steps:
           - cat /codefresh/volume/env_vars_to_export
           - echo ---------------------------- END
           - export EXPORTED2=EXPVAL
-          - EXPORTED2=EXPVAL echo Exported2 is $EXPORTED2
+          - echo Exported2 is $EXPORTED2
           - echo CF_BRANCH is $CF_BRANCH 
-          - EXPORTED2=EXPVAL2 cf_export SOME2=VALUE1 EXPORTED2 CF_BRANCH
+          - cf_export SOME2=VALUE1 EXPORTED2 CF_BRANCH
           - echo ---------------------------- START
           - echo /codefresh/volume/env_vars_to_export IS AFTER
           - cat /codefresh/volume/env_vars_to_export
