@@ -48,4 +48,4 @@ steps:
         description: Pushing image to Docker hub.
         type: push
         candidate: ${{build-step}}
-        tag: ${{CF_BRANCH}}        
+        tags: [ ${{CF_BRANCH}}, latest, anotherTag ]        
